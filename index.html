@@ -13,8 +13,88 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        <!--icons-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     </head>
     <body>
-        
+        <header class="container-fluid">
+            <div class="row py-5">
+                <div class="col-12 d-flex justify-content-center">
+                    <h3 class="estiloinicio ">Presupuesto Disponible</h3>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <h1 class="estiloinicio "><span> 000 </span></h1>
+                </div>
+                <div class="col-12 my-2">
+                    <div class="estiloinicio input-group input-group-lg">
+                        <span class="input-group-text bg-success" id="inputGroup-sizing-lg">INGRESOS</span>
+                        <input type="text" class="form-control bg-success" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                      </div>
+                </div>
+                <div class="col-12 ">
+                    <div class="estiloinicio input-group input-group-lg">
+                        <span class="input-group-text bg-danger" id="inputGroup-sizing-lg">EGRESOS</span>
+                        <input type="text" class="form-control bg-danger" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="container-fluid">
+            <div class="row p-2 d-flex justify-content-center border">
+                <div class="col-2 col-md-1">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="+">+</option>
+                        <option value="-">-</option>
+                      </select>
+                </div>
+                <div class="col-10 col-md-3 col-lg-2">
+                    <input class="form-control" type="text" placeholder="Ingrese la descripción">
+                </div>
+                <div class="col-10 col-md-3 col-lg-2">
+                    <input class="form-control" type="text" placeholder="Valor">
+                </div>
+                <div class="col-2 col-md-1">
+                    <button type="submit" class="btn">
+                        <i class="bi bi-check-square"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-5 d-flex justify-content-center" >
+                <div class="col-4 px-5">
+                    <h6 class="text-success border-bottom">INGRESOS</h6>
+                </div>
+                <div class="col-4 px-5">
+                    <h6 class="text-danger border-bottom">EGRESOS</h6>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4 px-5">
+                    <table class="table table-hover">
+                        <tr>
+                            <td>auxilio de transporte</td>
+                        </tr>
+                        <tr>
+                            <td>auxilio de transporte</td>
+                        </tr>
+                        <tr>
+                            <td>auxilio de transporte</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-4 px-5">
+                    <table class="table table-hover">
+                        <tr>
+                            <td>auxilio de transporte</td>
+                        </tr>
+                        <tr>
+                            <td>auxilio de transporte</td>
+                        </tr>
+                        <tr>
+                            <td>auxilio de transporte</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
     </body>
 </html>
