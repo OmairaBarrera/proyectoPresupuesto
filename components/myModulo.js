@@ -30,26 +30,31 @@ export default{
                 this.tablaEgresos();
             }
             formularioPresupuesto.reset();
-            this.disponible();
-            this.porcentajes();
+            this.mostrarDatos();
         });
     },
 
     ingresos(){
-        let data = JSON.parse(localStorage.getItem("ingresos"));
+        let data = 0;
         let contadorIngreso = 0;
-        data.forEach((val,id)=>{
-            contadorIngreso = contadorIngreso + Number(val.valor);
-        });
+        if(localStorage.ingresos){
+            data=JSON.parse(localStorage.getItem("ingresos"));
+            data.forEach((val,id)=>{
+                contadorIngreso = contadorIngreso + Number(val.valor);
+            });
+        }
         return contadorIngreso;
     },
 
     egresos(){
-        let data = JSON.parse(localStorage.getItem("egresos"));
+        let data = 0;
         let contadorEgresos = 0;
-        data.forEach((val,id)=>{
-            contadorEgresos = contadorEgresos + Number(val.valor);
-        });
+        if(localStorage.egresos){
+            data=JSON.parse(localStorage.getItem("egresos"));
+            data.forEach((val,id)=>{
+                contadorEgresos = contadorEgresos + Number(val.valor);
+            });
+        }
         return contadorEgresos;
     },
 
@@ -65,7 +70,10 @@ export default{
     },
 
     tablaIngresos(){
-        let data = JSON.parse(localStorage.getItem("ingresos"))
+        let data = [];
+        if(localStorage.ingresos){
+            data = JSON.parse(localStorage.getItem("ingresos"));
+        }
         document.querySelector('#tablaIngresos').innerHTML = "";
         data.forEach((val,id)=>{
             document.querySelector('#tablaIngresos').insertAdjacentHTML("beforeend",`    
@@ -78,7 +86,10 @@ export default{
     },
 
     tablaEgresos(){
-        let data = JSON.parse(localStorage.getItem("egresos"))
+        let data = [];
+        if(localStorage.egresos){
+            data = JSON.parse(localStorage.getItem("egresos"));
+        }
         let contador = this.ingresos();
         document.querySelector('#tablaEgresos').innerHTML = ""
         data.forEach((val,id)=>{
