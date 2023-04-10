@@ -1,32 +1,26 @@
+import config from "../storage/config.js";
+
 export default{ 
     formulario(){
-        let ingresos=[];
-        if (localStorage.ingresos){
-            ingresos = JSON.parse(localStorage.ingresos);
-        }
-        let egresos=[];
-        if (localStorage.egresos){
-            egresos = JSON.parse(localStorage.egresos);
-        }
         let formularioPresupuesto = document.querySelector("#formularioPresupuesto");
         formularioPresupuesto.addEventListener("submit", (e)=>{
             e.preventDefault();
             let data = Object.fromEntries(new FormData(e.target));
             if(data.tipo == "+"){
-                ingresos.unshift({
+                config["ingresos"].unshift({
                     tipo: `${data.tipo}`,
                     descripcion: `${data.descripcion}`,
                     valor: `${data.valor}`
                 });
-                localStorage.setItem("ingresos", JSON.stringify(ingresos));
+                localStorage.setItem("ingresos", JSON.stringify(config["ingresos"]));
                 this.tablaIngresos();
             } else {
-                egresos.unshift({
+                config["egresos"].unshift({
                     tipo: `${data.tipo}`,
                     descripcion: `${data.descripcion}`,
                     valor: `${data.valor}`
                 });
-                localStorage.setItem("egresos", JSON.stringify(egresos));
+                localStorage.setItem("egresos", JSON.stringify(config["egresos"]));
                 this.tablaEgresos();
             }
             formularioPresupuesto.reset();
@@ -35,26 +29,20 @@ export default{
     },
 
     ingresos(){
-        let data = 0;
+        let data = config["ingresos"];
         let contadorIngreso = 0;
-        if(localStorage.ingresos){
-            data=JSON.parse(localStorage.getItem("ingresos"));
-            data.forEach((val,id)=>{
-                contadorIngreso = contadorIngreso + Number(val.valor);
-            });
-        }
+        data.forEach((val,id)=>{
+            contadorIngreso = contadorIngreso + Number(val.valor);
+        });
         return contadorIngreso;
     },
 
     egresos(){
-        let data = 0;
+        let data = config["egresos"];
         let contadorEgresos = 0;
-        if(localStorage.egresos){
-            data=JSON.parse(localStorage.getItem("egresos"));
-            data.forEach((val,id)=>{
-                contadorEgresos = contadorEgresos + Number(val.valor);
-            });
-        }
+        data.forEach((val,id)=>{
+            contadorEgresos = contadorEgresos + Number(val.valor);
+        });
         return contadorEgresos;
     },
 
@@ -70,10 +58,7 @@ export default{
     },
 
     tablaIngresos(){
-        let data = [];
-        if(localStorage.ingresos){
-            data = JSON.parse(localStorage.getItem("ingresos"));
-        }
+        let data = config["ingresos"];
         document.querySelector('#tablaIngresos').innerHTML = "";
         data.forEach((val,id)=>{
             document.querySelector('#tablaIngresos').insertAdjacentHTML("beforeend",`    
@@ -86,10 +71,7 @@ export default{
     },
 
     tablaEgresos(){
-        let data = [];
-        if(localStorage.egresos){
-            data = JSON.parse(localStorage.getItem("egresos"));
-        }
+        let data = config["egresos"];
         let contador = this.ingresos();
         document.querySelector('#tablaEgresos').innerHTML = ""
         data.forEach((val,id)=>{
@@ -101,5 +83,5 @@ export default{
                 </tr>
             `)
         })
-    }, 
+    },
 }
