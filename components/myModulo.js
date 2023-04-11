@@ -1,5 +1,6 @@
 import config from "../storage/config.js";
 import myTablas from "./myTablas.js";
+import myCalculos from "./myCalculos.js";
 
 export default{ 
     config: new Intl.NumberFormat({ minimumFractionDigits: 0 }),
@@ -25,38 +26,9 @@ export default{
                 localStorage.setItem("egresos", JSON.stringify(config["egresos"]));
                 myTablas.showTablas();
             }
-/*             formularioPresupuesto.reset();
-            this.mostrarDatos(); */
+            formularioPresupuesto.reset();
+            myCalculos.mostrarDatos();
         });
     },
-
-    /* ingresos(){
-        let data = config["ingresos"];
-        let contadorIngreso = 0;
-        data.forEach((val,id)=>{
-            contadorIngreso = contadorIngreso + Number(val.valor);
-        });
-        return contadorIngreso;
-    },
-
-    egresos(){
-        let data = config["egresos"];
-        let contadorEgresos = 0;
-        data.forEach((val,id)=>{
-            contadorEgresos = contadorEgresos + Number(val.valor);
-        });
-        return contadorEgresos;
-    },
-
-    mostrarDatos(){
-        let contadorIngreso = this.ingresos();
-        let contadorEgresos = this.egresos();
-        let disponible = contadorIngreso - contadorEgresos;
-        let porcentaje = (contadorEgresos*100)/contadorIngreso;
-        document.querySelector('#valorDisponible').textContent = `$ ${this.config.format(disponible)}`;
-        document.querySelector('#ingresosMostrar').textContent = `${this.config.format(contadorIngreso)}`
-        document.querySelector('#egresosMostrar').textContent = `${this.config.format(contadorEgresos)}`
-        document.querySelector('#porcentajeEgresos').innerHTML = `<span class="badge bg-secondary">${porcentaje.toFixed(1)} %</span>`;
-    }, */
 
 }
