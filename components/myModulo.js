@@ -1,6 +1,7 @@
 import config from "../storage/config.js";
 
 export default{ 
+    config: new Intl.NumberFormat({ minimumFractionDigits: 0 }),
     formulario(){
         let formularioPresupuesto = document.querySelector("#formularioPresupuesto");
         formularioPresupuesto.addEventListener("submit", (e)=>{
@@ -51,9 +52,9 @@ export default{
         let contadorEgresos = this.egresos();
         let disponible = contadorIngreso - contadorEgresos;
         let porcentaje = (contadorEgresos*100)/contadorIngreso;
-        document.querySelector('#valorDisponible').textContent = `$ ${disponible}`;
-        document.querySelector('#ingresosMostrar').textContent = `${contadorIngreso}`
-        document.querySelector('#egresosMostrar').textContent = `${contadorEgresos}`
+        document.querySelector('#valorDisponible').textContent = `$ ${this.config.format(disponible)}`;
+        document.querySelector('#ingresosMostrar').textContent = `${this.config.format(contadorIngreso)}`
+        document.querySelector('#egresosMostrar').textContent = `${this.config.format(contadorEgresos)}`
         document.querySelector('#porcentajeEgresos').innerHTML = `<span class="badge bg-secondary">${porcentaje.toFixed(1)} %</span>`;
     },
 
@@ -64,7 +65,10 @@ export default{
             document.querySelector('#tablaIngresos').insertAdjacentHTML("beforeend",`    
                 <tr>
                     <td>${val.descripcion}</td> 
-                    <td>${val.valor}</td>
+                    <td class="d-flex justify-content-end">
+                        <p class="mx-2 px-2 text-success">${this.config.format(val.valor)}</p>
+                        <i class="eliminar bi bi-x-circle text-success"></i>
+                    </td>
                 </tr>
             `); 
         });
@@ -78,8 +82,11 @@ export default{
             document.querySelector('#tablaEgresos').insertAdjacentHTML("beforeend",`    
                 <tr>
                     <td>${val.descripcion}</td> 
-                    <td>${val.valor}</td>
-                    <td>${((val.valor*100)/contador).toFixed(1)} % </td>
+                    <td></td>
+                    <td  class="d-flex justify-content-end">
+                        <p class="mx-2 px-2 text-danger">${this.config.format(val.valor)} <span class="badge bg-danger">${((val.valor*100)/contador).toFixed(1)} % </span> </p>
+                        <i class="eliminar bi bi-x-circle text-danger"></i>
+                    </td>
                 </tr>
             `)
         })
