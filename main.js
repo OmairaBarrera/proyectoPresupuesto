@@ -1,8 +1,7 @@
 import myModulo from "./components/myModulo.js";
+import myTablas from "./components/myTablas.js";
 
-myModulo.mostrarDatos();
-myModulo.tablaIngresos();
-myModulo.tablaEgresos();
+myTablas.showTablas();
 myModulo.formulario();
 
 

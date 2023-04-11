@@ -1,4 +1,5 @@
 import config from "../storage/config.js";
+import myTablas from "./myTablas.js";
 
 export default{ 
     config: new Intl.NumberFormat({ minimumFractionDigits: 0 }),
@@ -14,7 +15,7 @@ export default{
                     valor: `${data.valor}`
                 });
                 localStorage.setItem("ingresos", JSON.stringify(config["ingresos"]));
-                this.tablaIngresos();
+                myTablas.showTablas();
             } else {
                 config["egresos"].unshift({
                     tipo: `${data.tipo}`,
@@ -22,14 +23,14 @@ export default{
                     valor: `${data.valor}`
                 });
                 localStorage.setItem("egresos", JSON.stringify(config["egresos"]));
-                this.tablaEgresos();
+                myTablas.showTablas();
             }
-            formularioPresupuesto.reset();
-            this.mostrarDatos();
+/*             formularioPresupuesto.reset();
+            this.mostrarDatos(); */
         });
     },
 
-    ingresos(){
+    /* ingresos(){
         let data = config["ingresos"];
         let contadorIngreso = 0;
         data.forEach((val,id)=>{
@@ -56,39 +57,6 @@ export default{
         document.querySelector('#ingresosMostrar').textContent = `${this.config.format(contadorIngreso)}`
         document.querySelector('#egresosMostrar').textContent = `${this.config.format(contadorEgresos)}`
         document.querySelector('#porcentajeEgresos').innerHTML = `<span class="badge bg-secondary">${porcentaje.toFixed(1)} %</span>`;
-    },
+    }, */
 
-    tablaIngresos(){
-        let data = config["ingresos"];
-        document.querySelector('#tablaIngresos').innerHTML = "";
-        data.forEach((val,id)=>{
-            document.querySelector('#tablaIngresos').insertAdjacentHTML("beforeend",`    
-                <tr>
-                    <td>${val.descripcion}</td> 
-                    <td class="d-flex justify-content-end">
-                        <p class="mx-2 px-2 text-success">${this.config.format(val.valor)}</p>
-                        <i class="eliminar bi bi-x-circle text-success"></i>
-                    </td>
-                </tr>
-            `); 
-        });
-    },
-
-    tablaEgresos(){
-        let data = config["egresos"];
-        let contador = this.ingresos();
-        document.querySelector('#tablaEgresos').innerHTML = ""
-        data.forEach((val,id)=>{
-            document.querySelector('#tablaEgresos').insertAdjacentHTML("beforeend",`    
-                <tr>
-                    <td>${val.descripcion}</td> 
-                    <td></td>
-                    <td  class="d-flex justify-content-end">
-                        <p class="mx-2 px-2 text-danger">${this.config.format(val.valor)} <span class="badge bg-danger">${((val.valor*100)/contador).toFixed(1)} % </span> </p>
-                        <i class="eliminar bi bi-x-circle text-danger"></i>
-                    </td>
-                </tr>
-            `)
-        })
-    },
 }
