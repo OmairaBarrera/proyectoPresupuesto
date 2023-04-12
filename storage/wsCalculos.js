@@ -5,7 +5,7 @@ let wsCalculos = {
         data.forEach((val,id)=>{
             contadorIngreso = contadorIngreso + Number(val.valor);
         });
-        return this.config.format(contadorIngreso);
+        return contadorIngreso;
     },
 
     egresos(data){
@@ -13,30 +13,20 @@ let wsCalculos = {
         data.forEach((val,id)=>{
             contadorEgresos = contadorEgresos + Number(val.valor);
         });
-        return this.config.format(contadorEgresos);
+        return contadorEgresos;
     },
 
     porcentaje(data){
-        let x = data
-        console.log(x)
-        return 5000;
-        /* console.log(data)
-        let dato1 = this.ingresos(data["ingresos"]);
-        let dato2 = this.egresos(data["egresos"]);
-        let resultado = (dato2*100)/dato1;
-        isNaN(resultado) ? resultado = 0 : resultado; */
+        let dato1 = this.ingresos(data.ingresos);
+        let dato2 = this.egresos(data.egresos);
+        let resultado = ((dato2*100)/dato1).toFixed(1);
+        return isNaN(resultado) ? resultado = 0 : resultado;
     },
 
     disponible (data){
-        let x = data.ingresos
-        let y = data.egresos
-        let dato1 = this.ingresos(x);
-        console.log(dato1)
-        let dato2 = this.egresos(y);
-        console.log(dato2)
-        let resultado = dato1 - dato2;
-        console.log(resultado)
-        return this.config.format(resultado);
+        let dato1 = this.ingresos(data.ingresos);
+        let dato2 = this.egresos(data.egresos);
+        return dato1 - dato2;
     },
 }
 
